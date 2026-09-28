@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ali Abir Shuvro</title>
+  <meta name="author" content="Ali Abir Shuvro">
+  <meta name="description" content="PhD student in Computer Science at the University of Illinois Chicago, working on causal discovery for relational data in networks.">
+  <meta property="og:title" content="Ali Abir Shuvro">
+  <meta property="og:description" content="PhD student in Computer Science, University of Illinois Chicago">
+  <meta property="og:image" content="assets/profile.png">
+  <link rel="icon" href="assets/profile.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.4/css/academicons.min.css">
+
+  <script>
+    // Apply saved theme before paint to avoid a flash
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-alt: #f7f8fa;
+      --text: #2b2f36;
+      --muted: #5f6672;
+      --heading: #1c1f24;
+      --primary: #1565c0;
+      --primary-soft: rgba(21, 101, 192, 0.08);
+      --border: #e3e6ea;
+      --nav-bg: rgba(255, 255, 255, 0.96);
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      --font-head: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      --font-body: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #181a1f;
+        --bg-alt: #1f2228;
+        --text: #d6d9de;
+        --muted: #9aa1ab;
+        --heading: #f1f3f5;
+        --primary: #64a4f0;
+        --primary-soft: rgba(100, 164, 240, 0.12);
+        --border: #2e323a;
+        --nav-bg: rgba(24, 26, 31, 0.96);
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #181a1f;
+      --bg-alt: #1f2228;
+      --text: #d6d9de;
+      --muted: #9aa1ab;
+      --heading: #f1f3f5;
+      --primary: #64a4f0;
+      --primary-soft: rgba(100, 164, 240, 0.12);
+      --border: #2e323a;
+      --nav-bg: rgba(24, 26, 31, 0.96);
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 3px; }
+    h1, h2, h3, h4 { font-family: var(--font-head); color: var(--heading); line-height: 1.25; }
+    img { max-width: 100%; }
+
+    /* ---------- Navbar ---------- */
+    .navbar {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--nav-bg);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+    .nav-inner {
+      max-width: 1140px; margin: 0 auto; padding: 0 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .brand { font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; color: var(--heading); }
+    .brand:hover { text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; margin: 0; padding: 0; }
+    .nav-links a {
+      font-family: var(--font-head); font-weight: 500; font-size: 0.92rem;
+      color: var(--text); padding: 8px 12px; border-radius: 4px;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--primary); text-decoration: none; }
+    .icon-btn {
+      background: none; border: 0; cursor: pointer; color: var(--text);
+      font-size: 1rem; padding: 8px 10px; border-radius: 4px;
+    }
+    .icon-btn:hover { color: var(--primary); }
+    .menu-toggle { display: none; }
+    @media (max-width: 860px) {
+      .menu-toggle { display: inline-block; }
+      .nav-links {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; align-items: stretch; gap: 0;
+        background: var(--nav-bg); box-shadow: var(--shadow); padding: 8px 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { display: block; padding: 10px 24px; }
+    }
+
+    /* ---------- Layout ---------- */
+    .section { padding: 72px 0; }
+    .section.alt { background: var(--bg-alt); }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+    .row { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; }
+    @media (max-width: 860px) { .row { grid-template-columns: 1fr; gap: 24px; } .section { padding: 52px 0; } }
+    .section-title { font-size: 2rem; font-weight: 600; margin: 0 0 8px; }
+
+    /* ---------- About / profile ---------- */
+    .profile { text-align: center; }
+    .avatar {
+      width: 250px; height: 250px; border-radius: 50%;
+      object-fit: cover; object-position: center 30%;
+      display: block; margin: 0 auto 20px;
+    }
+    .profile h2 { font-size: 1.9rem; font-weight: 700; margin: 0 0 6px; }
+    .profile .role { font-size: 1.1rem; color: var(--muted); margin: 0; font-family: var(--font-head); font-weight: 500; }
+    .profile .org { margin: 4px 0 0; }
+    .profile .org a { color: var(--muted); }
+    .profile .contact { margin: 10px 0 0; font-size: 0.98rem; }
+    .social { list-style: none; padding: 0; margin: 18px 0 0; display: flex; justify-content: center; gap: 18px; }
+    .social a { color: var(--primary); font-size: 1.6rem; line-height: 1; }
+    .social a:hover { opacity: 0.75; text-decoration: none; }
+
+    .about h1 { font-size: 2.2rem; margin: 0 0 16px; font-weight: 600; }
+    .about p { margin: 0 0 16px; max-width: 72ch; }
+    .about-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 28px; }
+    @media (max-width: 600px) { .about-cols { grid-template-columns: 1fr; } }
+    .about-cols h3 { font-size: 1.25rem; margin: 0 0 12px; font-weight: 600; }
+    .interests { margin: 0; padding-left: 20px; }
+    .interests li { margin-bottom: 4px; }
+    .edu { list-style: none; margin: 0; padding: 0; }
+    .edu li { display: grid; grid-template-columns: 26px 1fr; gap: 8px; margin-bottom: 14px; }
+    .edu i { color: var(--primary); margin-top: 6px; }
+    .edu .deg { font-weight: 500; color: var(--heading); display: block; }
+    .edu .inst, .edu .note { color: var(--muted); font-size: 0.95rem; display: block; line-height: 1.5; }
+
+    /* ---------- Experience timeline ---------- */
+    .timeline { position: relative; margin: 0; padding: 0; list-style: none; }
+    .timeline::before {
+      content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px;
+      width: 2px; background: var(--border);
+    }
+    .timeline > li { position: relative; padding-left: 36px; margin-bottom: 32px; }
+    .timeline > li:last-child { margin-bottom: 0; }
+    .timeline > li::before {
+      content: ""; position: absolute; left: 0; top: 7px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--bg); border: 3px solid var(--primary);
+    }
+    .section.alt .timeline > li::before { background: var(--bg-alt); }
+    .job-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; }
+    .job-title { font-family: var(--font-head); font-weight: 600; font-size: 1.1rem; color: var(--heading); margin: 0; }
+    .job-date { color: var(--muted); font-size: 0.92rem; white-space: nowrap; }
+    .job-org { color: var(--muted); margin: 2px 0 8px; }
+    .job-body { margin: 0; }
+    .job-body p { margin: 0 0 6px; }
+    .job-body .courses { font-size: 0.95rem; color: var(--muted); }
+
+    /* ---------- Publications ---------- */
+    .pub-group h3 { font-size: 1.25rem; margin: 0 0 16px; font-weight: 600; }
+    .pub-group + .pub-group { margin-top: 36px; }
+    .pubs { list-style: none; counter-reset: pub; margin: 0; padding: 0; }
+    .pubs li { counter-increment: pub; position: relative; padding-left: 40px; margin-bottom: 20px; }
+    .pubs li::before {
+      content: "[" counter(pub) "]"; position: absolute; left: 0; top: 0;
+      color: var(--muted); font-variant-numeric: tabular-nums;
+    }
+    .pub-authors { display: block; }
+    .pub-authors strong { color: var(--heading); }
+    .pub-title { display: block; font-weight: 500; color: var(--heading); }
+    .pub-venue { display: block; font-style: italic; color: var(--muted); font-size: 0.97rem; }
+    .pub-links { margin-top: 6px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn-outline {
+      display: inline-block; font-size: 0.8rem; font-family: var(--font-head); font-weight: 500;
+      padding: 2px 10px; border: 1px solid var(--primary); border-radius: 4px; color: var(--primary);
+    }
+    .btn-outline:hover { background: var(--primary-soft); text-decoration: none; }
+    .scholar-note { margin-top: 28px; color: var(--muted); font-size: 0.97rem; }
+
+    /* ---------- Honors ---------- */
+    .awards { list-style: none; margin: 0; padding: 0; }
+    .awards li { display: grid; grid-template-columns: 70px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .awards li:last-child { border-bottom: 0; }
+    .awards .yr { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .awards strong { color: var(--heading); font-weight: 500; }
+    .awards-sub { font-size: 1.15rem; font-weight: 600; margin: 28px 0 6px; }
+    .awards-sub:first-child { margin-top: 0; }
+
+    /* ---------- Skills ---------- */
+    .skills { margin: 0; }
+    .skills div { display: grid; grid-template-columns: 200px 1fr; gap: 12px; padding: 8px 0; }
+    .skills dt { font-weight: 500; color: var(--heading); }
+    .skills dd { margin: 0; }
+    @media (max-width: 600px) { .skills div { grid-template-columns: 1fr; gap: 0; } .awards li { grid-template-columns: 56px 1fr; } }
+
+    /* ---------- CV ---------- */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--primary); color: #fff; font-family: var(--font-head); font-weight: 600;
+      padding: 12px 22px; border-radius: 6px; margin-top: 8px;
+    }
+    :root[data-theme="dark"] .btn-primary { color: #111; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-primary { color: #111; } }
+    .btn-primary:hover { text-decoration: none; filter: brightness(1.08); }
+
+    footer { border-top: 1px solid var(--border); padding: 28px 0; text-align: center; color: var(--muted); font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" aria-label="Main">
+    <div class="nav-inner">
+      <a class="brand" href="#about">Ali Abir Shuvro</a>
+      <div style="display:flex;align-items:center;">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about">Home</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#honors">Honors</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#cv">CV</a></li>
+        </ul>
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle light or dark theme" title="Theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+        <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ================= ABOUT ================= -->
+    <section id="about" class="section">
+      <div class="container row">
+        <div class="profile">
+          <img class="avatar" src="assets/profile.png" alt="Portrait of Ali Abir Shuvro">
+          <h2>Ali Abir Shuvro</h2>
+          <p class="role">PhD Student in Computer Science</p>
+          <p class="org"><a href="https://cs.uic.edu">University of Illinois Chicago</a></p>
+          <p class="contact">Contact: <a href="mailto:ashuv@uic.edu">ashuv@uic.edu</a></p>
+          <ul class="social">
+            <li><a href="mailto:ashuv@uic.edu" aria-label="Email"><i class="fa-solid fa-envelope"></i></a></li>
+            <li><a href="https://scholar.google.com/citations?user=Cn5sEZwAAAAJ&hl=en" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/aliabirshuvro" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a></li>
+            <!-- Replace aliabirshuvro below, or delete this line -->
+            <li><a href="https://github.com/aliabirshuvro" aria-label="GitHub"><i class="fa-brands fa-github"></i></a></li>
+            <li><a href="files/Ali_Abir_Shuvro_CV.pdf" aria-label="CV"><i class="ai ai-cv"></i></a></li>
+          </ul>
+        </div>
+
+        <div class="about">
+          <h1>About</h1>
+          <p>
+            I am a PhD student in Computer Science at the <a href="https://cs.uic.edu">University of Illinois Chicago</a>,
+            where I work in the EDGES lab advised by Professor <a href="https://www.cs.uic.edu/~elena">Elena Zheleva</a>.
+          </p>
+          <p>
+            My research lies at the intersection of causal inference, data science, and machine learning. My current work
+            focuses on causal discovery for relational data in networks: extending LiNGAM-based methods to settings where
+            units are connected and influence one another, as in social network graphs. More broadly, I am interested in
+            going beyond prediction toward explainability, unlearning, and causality.
+          </p>
+          <p>
+            Before joining UIC, I spent two years as a Lecturer in the Department of Computer Science and Engineering at the
+            Islamic University of Technology (IUT), teaching courses in algorithms, networks, security, and software engineering.
+            I earned my B.Sc. from IUT as the Gold Medalist of my class.
+          </p>
+
+          <div class="about-cols">
+            <div>
+              <h3>Interests</h3>
+              <ul class="interests">
+                <li>Causal Inference</li>
+                <li>Causal Discovery</li>
+                <li>Graph Neural Networks</li>
+                <li>Time-series Analysis</li>
+                <li>Large Language Models</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Education</h3>
+              <ul class="edu">
+                <li>
+                  <i class="fa-solid fa-graduation-cap"></i>
+                  <div>
+                    <span class="deg">PhD in Computer Science, 2024 to present</span>
+                    <span class="inst">University of Illinois Chicago</span>
+                  </div>
+                </li>
+                <li>
+                  <i class="fa-solid fa-graduation-cap"></i>
+                  <div>
+                    <span class="deg">B.Sc. in Computer Science, 2022</span>
+                    <span class="inst">Islamic University of Technology, Bangladesh</span>
+                    <span class="note">Gold Medalist, top of the class</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EXPERIENCE ================= -->
+    <section id="experience" class="section alt">
+      <div class="container row">
+        <div><h2 class="section-title">Experience</h2></div>
+        <ol class="timeline">
+          <li>
+            <div class="job-head">
+              <h3 class="job-title">Graduate Research &amp; Teaching Assistant</h3>
+              <span class="job-date">Aug 2024 to present</span>
+            </div>
+            <div class="job-org">University of Illinois Chicago, Department of Computer Science</div>
+            <div class="job-body">
+              <p>Working with Professor <a href="https://www.cs.uic.edu/~elena">Elena Zheleva</a> in the EDGES lab on causal discovery for relational data in networks.</p>
+            </div>
+          </li>
+          <li>
+            <div class="job-head">
+              <h3 class="job-title">Lecturer</h3>
+              <span class="job-date">Aug 2022 to Aug 2024</span>
+            </div>
+            <div class="job-org">Islamic University of Technology, Department of CSE</div>
+            <div class="job-body">
+              <p class="courses">Taught Cryptography and Network Security, Computer Networks Lab, Data Structures and Algorithms Lab, Software Project Lab, Compiler Design Lab, Numerical Methods Lab, Bioinformatics Lab, Computer Programming Lab, E-Commerce and Web Security, Engineering Ethics, and Design Project.</p>
+            </div>
+          </li>
+          <li>
+            <div class="job-head">
+              <h3 class="job-title">Contractual Lecturer</h3>
+              <span class="job-date">Sep 2022 to May 2023</span>
+            </div>
+            <div class="job-org">Brac University, Department of CSE</div>
+            <div class="job-body">
+              <p class="courses">Taught Algorithms Lab, Computer Networks Lab, System Analysis and Design Lab, Robotics Lab, and Compiler Design Lab.</p>
+            </div>
+          </li>
+          <li>
+            <div class="job-head">
+              <h3 class="job-title">Machine Learning Engineer Intern</h3>
+              <span class="job-date">Apr 2021 to Sep 2021</span>
+            </div>
+            <div class="job-org">Pioneer Alpha Ltd.</div>
+            <div class="job-body">
+              <p>Worked with the Vision Research Group on image generation projects using computer vision models.</p>
+            </div>
+          </li>
+          <li>
+            <div class="job-head">
+              <h3 class="job-title">Network Service Management Intern</h3>
+              <span class="job-date">Feb 2021 to Apr 2021</span>
+            </div>
+            <div class="job-org">Banglalink Digital Communications</div>
+            <div class="job-body">
+              <p>Studied the backbone of a national cellular network and worked with Nokia engineers to implement zero-touch configuration on base stations.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= PUBLICATIONS ================= -->
+    <section id="publications" class="section">
+      <div class="container row">
+        <div><h2 class="section-title">Publications</h2></div>
+        <div>
+          <div class="pub-group">
+            <h3>Ongoing research</h3>
+            <ol class="pubs">
+              <li>
+                <span class="pub-authors"><strong>A. A. Shuvro</strong>, D. Arbour, E. Zheleva.</span>
+                <span class="pub-title">Enhanced LiNGAM-based Causal Discovery for Relational Data in Networks.</span>
+                <span class="pub-venue">In preparation.</span>
+              </li>
+            </ol>
+          </div>
+
+          <div class="pub-group">
+            <h3>Journal articles</h3>
+            <ol class="pubs">
+              <li>
+                <span class="pub-authors">S. S. Arnob, <strong>A. A. Shuvro</strong>, S. Rahman, M. Moniruzzaman, M. S. Hossen.</span>
+                <span class="pub-title">Time-series multivariate multistep traffic flow forecasting using temporal fusion transformers.</span>
+                <span class="pub-venue">International Journal of Intelligent Transportation Systems Research, 2025.</span>
+                <div class="pub-links"><a class="btn-outline" href="https://doi.org/10.1007/s13177-025-00480-1">DOI</a></div>
+              </li>
+              <li>
+                <span class="pub-authors"><strong>A. A. Shuvro</strong>, M. S. I. Bhuiyan, F. Hussain, M. S. Hossen.</span>
+                <span class="pub-title">Zero-shot performance analysis of large language models in sum-rate maximization.</span>
+                <span class="pub-venue">PLOS ONE, vol. 20, no. 8, e0329674, 2025.</span>
+                <div class="pub-links"><a class="btn-outline" href="https://doi.org/10.1371/journal.pone.0329674">DOI</a></div>
+              </li>
+              <li>
+                <span class="pub-authors"><strong>A. A. Shuvro</strong>, M. S. Khan, M. Rahman, F. Hussain, M. Moniruzzaman, M. S. Hossen.</span>
+                <span class="pub-title">Transformer based traffic flow forecasting in SDN-VANET.</span>
+                <span class="pub-venue">IEEE Access, vol. 11, pp. 41816–41826, 2023.</span>
+                <div class="pub-links"><a class="btn-outline" href="https://doi.org/10.1109/ACCESS.2023.3270889">DOI</a></div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="pub-group">
+            <h3>Conference proceedings</h3>
+            <ol class="pubs">
+              <li>
+                <span class="pub-authors">S. A. Chowdhury, S. F. Karim, M. S. I. Bhuiyan, <strong>A. A. Shuvro</strong>, M. S. Hossen.</span>
+                <span class="pub-title">Quantum machine learning for anomaly detection in IoT devices.</span>
+                <span class="pub-venue">5th International Conference on AI-ML-Systems (AIMLSystems), 2025.</span>
+                <div class="pub-links"><a class="btn-outline" href="https://doi.org/10.1109/AIMLSystems67835.2025.11331191">DOI</a></div>
+              </li>
+              <li>
+                <span class="pub-authors">A. A. Arnab, K. Ma, <strong>A. A. Shuvro</strong>, H. Leung.</span>
+                <span class="pub-title">Comparison of 4G LTE and 5G NR in UAV networks: A Simu5G-based performance evaluation.</span>
+                <span class="pub-venue">IEEE 9th World Forum on Internet of Things (WF-IoT), 2023.</span>
+                <div class="pub-links"><a class="btn-outline" href="https://doi.org/10.1109/WF-IoT58464.2023.10539559">DOI</a></div>
+              </li>
+              <li>
+                <span class="pub-authors">A. A. Arnab, <strong>A. A. Shuvro</strong>, K. Ma, H. Leung.</span>
+                <span class="pub-title">A deep learning approach for a QoS prediction system in cellular networks.</span>
+                <span class="pub-venue">IEEE 9th World Forum on Internet of Things (WF-IoT), 2023.</span>
+                <div class="pub-links"><a class="btn-outline" href="https://doi.org/10.1109/WF-IoT58464.2023.10539507">DOI</a></div>
+              </li>
+              <li>
+                <span class="pub-authors">R. M. Alamgir et al.</span>
+                <span class="pub-title">Performance analysis of YOLO-based architectures for vehicle detection from traffic images in Bangladesh.</span>
+                <span class="pub-venue">25th International Conference on Computer and Information Technology (ICCIT), 2022, pp. 982–987.</span>
+                <div class="pub-links"><a class="btn-outline" href="https://doi.org/10.1109/ICCIT57492.2022.10055758">DOI</a></div>
+              </li>
+            </ol>
+          </div>
+
+          <p class="scholar-note">A full, up-to-date list is on <a href="https://scholar.google.com/citations?user=Cn5sEZwAAAAJ&hl=en">Google Scholar</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HONORS ================= -->
+    <section id="honors" class="section alt">
+      <div class="container row">
+        <div><h2 class="section-title">Honors &amp; Awards</h2></div>
+        <div>
+          <h3 class="awards-sub">Honors and scholarships</h3>
+          <ul class="awards">
+            <li><span class="yr">2022</span><span><strong>Gold Medalist</strong>, 34th Convocation of Islamic University of Technology</span></li>
+            <li><span class="yr">2018–22</span><span><strong>OIC Academic Scholarship</strong>, Islamic University of Technology</span></li>
+            <li><span class="yr">2009</span><span><strong>Talentpool Scholarship</strong>, Primary School Completion Examination</span></li>
+          </ul>
+
+          <h3 class="awards-sub">Competitions</h3>
+          <ul class="awards">
+            <li><span class="yr">2022</span><span><strong>Finalist</strong>, Robi Datathon 2.0</span></li>
+            <li><span class="yr">2021</span><span><strong>National Finalist</strong>, Huawei ICT Competition</span></li>
+            <li><span class="yr">2021</span><span><strong>Finalist</strong>, Blockchain Olympiad Bangladesh</span></li>
+            <li><span class="yr">2020</span><span><strong>Finalist</strong>, Dhaka-AI 2020</span></li>
+          </ul>
+
+          <h3 class="awards-sub">Service and activities</h3>
+          <ul class="awards">
+            <li><span class="yr">2022–24</span><span><strong>Advisor</strong>, IUT Computer Society</span></li>
+            <li><span class="yr">2022–24</span><span><strong>Member</strong>, IUT CSE Course Load Distribution Committee</span></li>
+            <li><span class="yr">2022–23</span><span><strong>Programming Coach</strong>, National Girls' Programming Contest</span></li>
+            <li><span class="yr">2021–22</span><span><strong>Vice-Captain</strong>, IUT CSE Football Team</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SKILLS ================= -->
+    <section id="skills" class="section">
+      <div class="container row">
+        <div><h2 class="section-title">Skills</h2></div>
+        <dl class="skills">
+          <div><dt>Programming</dt><dd>Python, C, C++, Java, R</dd></div>
+          <div><dt>Databases</dt><dd>MySQL, Oracle SQL</dd></div>
+          <div><dt>Tools</dt><dd>VS Code, Google Colab, IntelliJ, Eclipse, LaTeX</dd></div>
+          <div><dt>Languages</dt><dd>English, Bengali</dd></div>
+          <div><dt>Other</dt><dd>Academic research, teaching and training, LaTeX typesetting and publishing</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ================= CV ================= -->
+    <section id="cv" class="section alt">
+      <div class="container row">
+        <div><h2 class="section-title">CV</h2></div>
+        <div>
+          <p>My full CV, including coursework and undergraduate projects.</p>
+          <a class="btn-primary" href="files/Ali_Abir_Shuvro_CV.pdf"><i class="fa-solid fa-file-arrow-down"></i> Download CV (PDF)</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year">2026</span> Ali Abir Shuvro</div>
+  </footer>
+
+  <script>
+    // Theme: cycles auto -> light -> dark -> auto
+    (function () {
+      var root = document.documentElement, btn = document.getElementById('themeBtn');
+      function current() { return root.getAttribute('data-theme') || 'auto'; }
+      function apply(t) {
+        if (t === 'auto') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', t);
+        try { t === 'auto' ? localStorage.removeItem('theme') : localStorage.setItem('theme', t); } catch (e) {}
+        btn.title = 'Theme: ' + t;
+      }
+      btn.title = 'Theme: ' + current();
+      btn.addEventListener('click', function () {
+        var next = { auto: 'light', light: 'dark', dark: 'auto' }[current()];
+        apply(next);
+      });
+    })();
+
+    // Mobile menu
+    (function () {
+      var btn = document.getElementById('menuBtn'), links = document.getElementById('navLinks');
+      btn.addEventListener('click', function () {
+        var open = links.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open);
+      });
+      links.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') { links.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+      });
+    })();
+
+    // Highlight the nav link for the section in view
+    (function () {
+      var links = document.querySelectorAll('.nav-links a');
+      var map = {};
+      links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) {
+            links.forEach(function (a) { a.classList.remove('active'); });
+            var a = map[en.target.id]; if (a) a.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      document.querySelectorAll('main section[id]').forEach(function (s) { obs.observe(s); });
+    })();
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
